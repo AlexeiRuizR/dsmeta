@@ -16,6 +16,7 @@ function SalesCard() {
 
   const [sales, setSales] = useState<Sale[]>([]);
 
+  const locale = "pt-br";
   useEffect(() => {
     const dmin = minDate.toISOString().slice(0, 10);
     const dmax = maxDate.toISOString().slice(0, 10);
@@ -68,7 +69,11 @@ function SalesCard() {
                 <tr key={sale.id}>
                   <td className="show992">{sale.id}</td>
                   <td className="show576">
-                    {new Date(sale.date).toLocaleDateString()}
+                    {
+                      new Date(sale.date)
+                        .toLocaleDateString(locale)
+                        .split(",")[0]
+                    }
                   </td>
                   <td>{sale.sellerName}</td>
                   <td className="show992">{sale.visited}</td>
